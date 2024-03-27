@@ -1,3 +1,4 @@
+import { NotificationsComponent } from './components/notifications/notifications.component';
 import { Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
@@ -48,6 +49,6 @@ export const routes: Routes = [
     ]},
 
     { path: 'notifications', component: LayoutComponent, canActivate: [], children: [
-        { path: '', component: ProfileComponent },
+        { path: '', component: NotificationsComponent },
     ]}
 ];
