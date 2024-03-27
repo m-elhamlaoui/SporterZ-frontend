@@ -9,8 +9,9 @@ mat-drawer {
 
 mat-drawer-content {
     overflow-y: scroll;
-    padding-top: 20px;
-    padding-left: 20px;
+    color: black;
+    background-color: aliceblue;
+    padding: 1.25em 1.25em 0 1.25em; 
 }
 
 app-toolbar {
