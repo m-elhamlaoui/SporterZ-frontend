@@ -10,11 +10,10 @@ import { MatchesComponent } from './components/matches/matches.component';
 import { MessagesComponent } from './components/messages/messages.component';
 import { TeamsComponent } from './components/teams/teams.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { LandingComponent } from './components/landing/landing.component';
 
 export const routes: Routes = [
-    { path: '', component: HomeComponent, children: [
-        { path: '', component: HomeComponent },
-    ]},
+    { path: '', component: LandingComponent },
 
     { path: 'login', component: LoginComponent, children: [
         { path: '', component: LoginComponent },
@@ -24,7 +23,7 @@ export const routes: Routes = [
         { path: '', component: RegisterComponent },
     ]},
 
-    { path: '', component: LayoutComponent, canActivate: [], children: [
+    { path: 'home', component: LayoutComponent, canActivate: [], children: [
         { path: '', component: HomeComponent },
     ]},
 
