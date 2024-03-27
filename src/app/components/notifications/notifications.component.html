@@ -1,1 +1,21 @@
-<p>notifications works!</p>
+<h1>{{ message }}</h1>
+<div id="dropdownNotification" class="z-20 w-full bg-white divide-y divide-gray-100 shadow dark:bg-gray-800 dark:divide-gray-700" aria-labelledby="dropdownNotificationButton">
+  <div class="divide-y divide-gray-100 dark:divide-gray-700">
+    <a *ngFor="let notification of notifications" [href]="notification.href" class="flex px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700">
+      <div class="flex-shrink-0">
+        <!-- Avatar of interactor -->
+        <img class="rounded-full w-11 h-11" [src]="notification.img_src" alt="Avatar image">
+        <!-- Icon of interaction -->
+        <div class="absolute flex items-center justify-center shadow rounded-full bg-white w-6 h-6 ms-6 -mt-5">
+          <i-tabler class="max-w-4 max-h-4 text-blue-500" [name]="notification.icon_name"></i-tabler>
+        </div>
+      </div>
+      <div class="w-full ps-3">
+          <!-- Desciption of interaction - format based on interaction -->
+          <div class="text-gray-500 text-sm mb-1.5 dark:text-gray-400">{{ notification.description }}</div>
+          <!-- Time of interaction -->
+          <div class="text-xs text-blue-600 dark:text-blue-500">{{ notification.time }}</div>
+      </div>
+    </a>
+  </div>
+</div>
