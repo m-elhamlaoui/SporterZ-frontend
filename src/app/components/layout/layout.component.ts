@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { MaterialModule } from '../../material-modules';
+import { ToolbarComponent } from '../toolbar/toolbar.component';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-layout',
@@ -9,7 +11,9 @@ import { MaterialModule } from '../../material-modules';
   imports: [
     RouterModule,
     MaterialModule,
-    SidebarComponent
+    SidebarComponent,
+    ToolbarComponent,
+    FooterComponent
   ],
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss'
