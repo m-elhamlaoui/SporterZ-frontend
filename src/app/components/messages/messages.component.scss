@@ -1,0 +1,28 @@
+.messages {
+    display: flex;
+    flex-direction: row;
+}
+
+.inbox {
+    background-color: aliceblue;
+    width: 500px;
+    border-radius: 10px;
+    height: 90vh;
+    padding: 20px;
+}
+
+.inbox-header {
+    color: rgb(56, 56, 56);
+    background-color: rgb(207, 220, 231);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.chatroom {
+    background-color: rgb(56, 56, 56);
+    width: 750px;
+    border-radius: 10px;
+    height: 90vh;
+    padding: 20px;
+    margin-left: 20px;
+}
