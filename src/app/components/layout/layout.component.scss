@@ -7,7 +7,7 @@
 .toolbar {
     position: sticky;
     top: 0;
-    background-color: rgba(245, 245, 245, 0.9);
+    background-color: rgba(157, 157, 157, 0.8); /* Example color for the toolbar with some transparency */
     backdrop-filter: blur(1px);
     z-index: 1000;
 }
@@ -15,18 +15,20 @@
 .box {
     display: flex;
     flex-direction: row;
+    flex: 1;
 }
 
 .sidebar {
-    top: 0;
     position: sticky;
+    top: 0;
     width: 200px;
+    background-color: #eaeaea;
 }
 
 .content {
     flex: 1;
     padding-top: 30px;
     padding-left: 80px;
-    padding-right: 30px;
+    padding-right: 40px;
     padding-bottom: 30px;
 }
