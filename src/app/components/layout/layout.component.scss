@@ -7,8 +7,8 @@
 .toolbar {
     position: sticky;
     top: 0;
-    background-color: rgba(157, 157, 157, 0.8); /* Example color for the toolbar with some transparency */
-    backdrop-filter: blur(5px);
+    background-color: rgba(245, 245, 245, 0.9);
+    backdrop-filter: blur(1px);
     z-index: 1000;
 }
 
@@ -18,9 +18,9 @@
 }
 
 .sidebar {
+    top: 0;
     position: sticky;
     width: 200px;
-    background-color: #eaeaea;
 }
 
 .content {
