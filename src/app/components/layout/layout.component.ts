@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { MaterialModule } from '../../material-modules';
@@ -11,6 +11,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
+import { NgIf } from '@angular/common';
+
 
 @Component({
   selector: 'app-layout',
@@ -21,10 +23,17 @@ import { MatDividerModule } from '@angular/material/divider';
     SidebarComponent,
     ToolbarComponent,
     FooterComponent,
+    NgIf
   ],
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss'
 })
 export class LayoutComponent {
+  
+  isDark !: Boolean;
+
+  constructor() { 
+    this.isDark = localStorage.getItem('isDark') == 'true';
+  }
 
 }
