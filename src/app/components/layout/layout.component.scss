@@ -15,20 +15,18 @@
 .box {
     display: flex;
     flex-direction: row;
-    flex: 1;
 }
 
 .sidebar {
-    position: sticky;
     top: 0;
+    position: sticky;
     width: 200px;
-    background-color: #eaeaea;
 }
 
 .content {
     flex: 1;
     padding-top: 30px;
     padding-left: 80px;
-    padding-right: 40px;
+    padding-right: 30px;
     padding-bottom: 30px;
 }
