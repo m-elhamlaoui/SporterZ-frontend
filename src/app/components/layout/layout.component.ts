@@ -11,7 +11,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
-import { NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
@@ -23,7 +23,7 @@ import { NgIf } from '@angular/common';
     SidebarComponent,
     ToolbarComponent,
     FooterComponent,
-    NgIf
+    CommonModule
   ],
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss'
