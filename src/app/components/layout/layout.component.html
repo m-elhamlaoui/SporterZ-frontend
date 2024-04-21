@@ -1,15 +1,28 @@
-<!-- <mat-toolbar>
-    <app-toolbar></app-toolbar>
-</mat-toolbar> -->
-
-    <mat-drawer-container class="drawer-container">
-        <mat-drawer color="primary" mode="side" opened="true">
-            <app-sidebar></app-sidebar>
-        </mat-drawer>
-
-        <mat-drawer-content class="drawer-content">
-            <router-outlet></router-outlet>
-        </mat-drawer-content>
-    </mat-drawer-container>  
-
-<!-- <app-footer></app-footer> -->
+<div class="layout">
+    <div *ngIf="!isDark">
+        <div class="toolbar">
+            <app-toolbar></app-toolbar>
+        </div>
+        <div class="box">
+            <div class="sidebar">
+                <app-sidebar></app-sidebar>
+            </div>
+            <div class="content">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="isDark" class="dark">
+        <div class="toolbar">
+            <app-toolbar></app-toolbar>
+        </div>
+        <div class="box">
+            <div class="sidebar">
+                <app-sidebar></app-sidebar>
+            </div>
+            <div class="content">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</div>
