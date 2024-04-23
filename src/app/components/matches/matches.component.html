@@ -1,51 +1,58 @@
-<div class="z-20 w-full bg-white divide-y divide-gray-100 shadow dark:bg-gray-800 dark:divide-gray-700" aria-labelledby="dropdownNotificationButton">
-	<div *ngFor="let match of matches" class="match mb-4">
-    <div class="match-header">
-        <div class="match-status">{{ match.status }}</div>
-        <div class="match-tournament"><img [src]="match.league_logo" />{{ match.league }}</div>
-        <div class="match-actions">
-					<p class="hidden"></p>
-        </div>
+<div *ngIf="loading; else matchesList">
+    <p>Loading...</p>
+  </div>
+  
+  <ng-template #matchesList>
+    <div class="z-20 w-full bg-white divide-y divide-gray-100 shadow dark:bg-gray-800 dark:divide-gray-700" aria-labelledby="dropdownNotificationButton">
+      <div *ngFor="let match of matches" class="match mb-4">
+          <div class="match-header">
+              <div class="match-status">{{ match.statusMatch }}</div>
+              <div class="match-tournament"><img [src]="'https://media.api-sports.io/football/leagues/' + match.idLeague + '.png'" />{{ match.nameLeague }}</div>
+              <div class="match-actions">
+                  <p class="hidden"></p>
+              </div>
+          </div>
+          <div class="match-content">
+              <div class="column">
+                  <div class="team team--home">
+                      <div class="team-logo">
+                          <img [src]="'https://media.api-sports.io/football/teams/' + match.idHomeTeam + '.png'" />
+                      </div>
+                      <h2 class="team-name">{{ match.nameHomeTeam }}</h2>
+                  </div>
+              </div>
+              <div class="column">
+                  <div class="match-details">
+                      <div class="match-date">
+                          {{ match.datetimeMatch | date:'medium' }}
+                      </div>
+                      <div class="match-score">
+                          <span class="match-score-number match-score-number--leading">{{ match.goalsHomeTeam }}</span>
+                          <span class="match-score-divider">:</span>
+                          <span class="match-score-number">{{ match.goalsAwayTeam }}</span>
+                      </div>
+                      <div class="match-time-lapsed">
+                          Time<!-- {{ match.match_time }} -->
+                      </div>
+                      <div class="match-bet-options">
+                          <button class="match-bet-option max-h-14 w-full shadow hover:shadow-lg rounded-sm">Vote for {{ match.nameHomeTeam }}</button>
+                          <p class="match-bet-option max-h-8 my-auto">123</p>  <!-- {{ match.votes1 }} -->
+                          <p class="match-bet-option max-h-8 my-auto">124</p>  <!-- {{ match.votes2 }} -->
+                          <button class="match-bet-option max-h-14 w-full shadow hover:shadow-lg rounded-sm">Vote for {{ match.nameAwayTeam }}</button>
+                      </div>
+                      <button type="button" class="text-white bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-4">Enter Match Room</button>
+                  </div>
+              </div>
+              <div class="column">
+                  <div class="team team--away">
+                      <div class="team-logo">
+                          <img [src]="'https://media.api-sports.io/football/teams/' + match.idAwayTeam + '.png'" />
+                      </div>
+                      <h2 class="team-name">{{ match.nameAwayTeam }}</h2>
+                  </div>
+              </div>
+          </div>
+      </div>
     </div>
-    <div class="match-content">
-        <div class="column">
-            <div class="team team--home">
-                <div class="team-logo">
-                    <img [src]="match.logo1" />
-                </div>
-                <h2 class="team-name">{{ match.club1 }}</h2>
-            </div>
-        </div>
-        <div class="column">
-            <div class="match-details">
-                <div class="match-date">
-                    {{ match.date }}
-                </div>
-                <div class="match-score">
-                    <span class="match-score-number match-score-number--leading">{{ match.score1 }}</span>
-                    <span class="match-score-divider">:</span>
-                    <span class="match-score-number">{{ match.score2 }}</span>
-                </div>
-                <div class="match-time-lapsed">
-									{{ match.match_time }}
-                </div>
-                <div class="match-bet-options">
-                    <button class="match-bet-option max-h-14 w-full shadow hover:shadow-lg rounded-sm">Vote for {{ match.club1 }}</button>
-                    <p class="match-bet-option max-h-8 my-auto">{{ match.votes1 }}</p>
-                    <p class="match-bet-option max-h-8 my-auto">{{ match.votes2 }}</p>
-                    <button class="match-bet-option max-h-14 w-full shadow hover:shadow-lg rounded-sm">Vote for {{ match.club2 }}</button>
-                </div>
-								<button type="button" class="text-white bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-4"(click)="redirectToRoom(match.room_link)">Enter Match Room</button>
-							</div>
-        </div>
-        <div class="column">
-            <div class="team team--away">
-                <div class="team-logo">
-                    <img [src]="match.logo2" />
-                </div>
-                <h2 class="team-name">{{ match.club2 }}</h2>
-            </div>
-        </div>
-    </div>
-	</div>
-</div>
+  </ng-template>
+  
