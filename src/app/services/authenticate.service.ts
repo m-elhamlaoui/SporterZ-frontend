@@ -1,32 +1,31 @@
-import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { AppComponent } from '../app.component';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs';
+import { TokenStorageService } from './token-storage.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class AuthenticateService {
+export class AuthenticationService {
+  private baseUrl = "http://localhost:8081/api/v1/auth/authenticate";
 
-  baseUrl = "http://localhost:8081/api/v1/auth/";
-  loginToken !: string;
-  isAuthenticated !: boolean;
+  constructor(
+    private http: HttpClient,
+    private tokenStorageService: TokenStorageService
+  ) {}
 
-  constructor(private httpClient: HttpClient) { 
-    this.isAuthenticated = false;
+  authenticate(email: string, password: string) {
+    return this.http
+      .post(this.baseUrl, {
+        email: email,
+        password: password,
+      })
+      .pipe(
+        map((res: any) => {
+          console.log(res.token);
+          this.tokenStorageService.saveToken(res.token);
+        })
+      );
   }
-
-  public authenticateJWT(email: string, password: string) {
-    let httpParams = new HttpParams().set('email', email).set('password', password);
-    let options = {
-      headers: new HttpHeaders().set("Content-Type", "application/x-www-form-urlencoded")
-    }
-    return this.httpClient.post(this.baseUrl + 'authenticate', httpParams, options);
-  }
-
-  public loadJWT(resp: any) {
-    this.isAuthenticated = true;
-    localStorage.setItem('isAuthenticated', 'true');
-    this.loginToken = resp['access-token'];
-    localStorage.setItem('loginToken', this.loginToken);
-  }
-  
 }

@@ -1,6 +1,6 @@
-import { AuthenticateService } from './../../services/authenticate.service';
+import { AuthenticationService } from './../../services/authenticate.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,33 +14,47 @@ import { Router } from '@angular/router';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent implements OnInit {
+  authenticationForm = new FormGroup({
+    email: new FormControl(''),
+    password: new FormControl(''),
+  });
+  loginFailed: boolean = false;
+  errorMessage: string = '';
+  loginSucceded: boolean = false;
+  successMessage: string = '';
 
-  formLogin!: FormGroup;
+  constructor(
+    private authenticationService : AuthenticationService,
+    private router: Router
+  ) {}
 
-  constructor(private authenticateService: AuthenticateService, private router: Router, private fb: FormBuilder) { }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
-    this.formLogin = this.fb.group({
-      email: this.fb.control(""),
-      password: this.fb.control("")
-    })
+  handleLogin() {
+    if (
+      this.authenticationForm.value.email &&
+      this.authenticationForm.value.password
+    ) {
+      this.authenticationService
+        .authenticate(
+          this.authenticationForm.value.email,
+          this.authenticationForm.value.password
+        )
+        .subscribe({
+          next: (data) => {
+            this.loginSucceded = true;
+            this.successMessage = 'Login successful. Redirecting...';
+            setTimeout(() => {
+              this.router.navigate(['/home']);
+            }, 4000);
+          },
+          error: (err) => {
+            this.loginFailed = true;
+            this.errorMessage = 'Login failed. Please try again.';
+          },
+        });
+    } else {
+      console.log('Please enter a valid email and password.');
+    }
   }
-
-  authenticateJWT() {
-    let email = this.formLogin.value.email;
-    let password = this.formLogin.value.password;
-    this.authenticateService.authenticateJWT(email, password).subscribe(
-      {
-        next: resp => {
-          console.log(resp);
-          this.authenticateService.loadJWT(resp);
-          this.router.navigate(['/home']);
-        },
-        error: err => {
-          console.log(err);
-        }
-      }
-    );
-  }
-
 }
