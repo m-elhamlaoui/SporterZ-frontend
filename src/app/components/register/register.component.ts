@@ -24,23 +24,28 @@ export class RegisterComponent implements OnInit {
     this.formRegister = this.fb.group({
       firstname: this.fb.control(""),
       lastname: this.fb.control(""),
+      username: this.fb.control(""),
       email: this.fb.control(""),
       password: this.fb.control("")
     })
   }
 
+  
   registerUser() {
     let firstname = this.formRegister.value.firstname;
     let lastname = this.formRegister.value.lastname;
+    let username = this.formRegister.value.username;
     let email = this.formRegister.value.email;
     let password = this.formRegister.value.password;
-    this.registerService.registerUser(firstname, lastname, email, password).subscribe(
+    console.log({firstname,lastname,username,email,password});
+    this.registerService.registerUser(firstname, lastname, username, email, password).subscribe(
       {
         next: resp => {
           console.log(resp);
           alert("Account created successfully!");
         },
         error: err => {
+          
           console.log(err);
         }
       }

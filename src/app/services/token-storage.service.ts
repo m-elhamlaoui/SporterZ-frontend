@@ -24,6 +24,15 @@ export class TokenStorageService {
     return window.sessionStorage.getItem('token');
   }
 
+  saveUsername(username: any): void {
+    window.sessionStorage.removeItem('username');
+    window.sessionStorage.setItem('username', username);
+  }
+
+  getUsername(): any {
+    return window.sessionStorage.getItem('username');
+  }
+
   saveUser(user: any): void {
     window.sessionStorage.removeItem('user');
     window.sessionStorage.setItem('user', JSON.stringify(user));

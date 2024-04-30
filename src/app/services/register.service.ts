@@ -13,11 +13,12 @@ export class RegisterService {
     private httpClient: HttpClient
   ) {}
 
-  registerUser(firstname: string, lastname: string, email: string, password: string) {
+  registerUser(firstname: string, lastname: string, username: string, email: string, password: string) {
     // let httpParams = new HttpParams().set('firstname', firstName).set('lastname', lastName).set('email', email).set('password', password);
     return this.httpClient.post(this.baseUrl + 'register',{
       firstName: firstname,
       lastName: lastname,
+      login: username,
       email: email,
       password: password,
     }

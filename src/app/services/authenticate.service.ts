@@ -23,8 +23,9 @@ export class AuthenticationService {
       })
       .pipe(
         map((res: any) => {
-          console.log(res.token);
+          console.log(res);
           this.tokenStorageService.saveToken(res.token);
+          this.tokenStorageService.saveUsername(res.userName);
         })
       );
   }
