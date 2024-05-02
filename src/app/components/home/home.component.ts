@@ -19,8 +19,6 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
 })
 export class HomeComponent implements OnInit {
 
-  username="3adnane";
-
 
   postForm = new FormGroup({
     content: new FormControl(''),
@@ -66,12 +64,10 @@ export class HomeComponent implements OnInit {
     });
   }
 
-
-  
-
   addPost() {
     if (this.postForm.valid) {
       this.postForm.value.username = this.tokenStorageService.getUsername();
+      this.postForm.value.content = this.postForm.value.content;
       console.log(this.postForm.value);
       this.postsService.addPost(this.postForm.value).subscribe({
         next: (data) => {

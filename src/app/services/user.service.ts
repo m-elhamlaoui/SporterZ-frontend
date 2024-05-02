@@ -1,12 +1,13 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { TokenStorageService } from './token-storage.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PostsService {
-  private baseUrl = "http://localhost:8081/api/posts";
+export class UserService {
+
+  private baseUrl = "http://localhost:8085/api/users";
   private httpOptions: any;
   
   constructor(
@@ -20,25 +21,8 @@ export class PostsService {
     };
   }
 
-  getPosts() {
+  getUsers() {
     return this.http.get(`${this.baseUrl}/getAll`, this.httpOptions);
   }
 
-  getPostById(postId: number) {
-    return this.http.get(
-      `${this.baseUrl}/get/${postId}`,
-      this.httpOptions
-    );
-  }
-
-  addPost(post: any) {
-    return this.http.post(`${this.baseUrl}/create`, post, this.httpOptions);
-  }
-
-  deletePost(postId: number) {
-    return this.http.delete(
-      `${this.baseUrl}/delete/${postId}`,
-      this.httpOptions
-    );
-  }
 }

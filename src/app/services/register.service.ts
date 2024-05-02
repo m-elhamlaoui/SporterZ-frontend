@@ -7,7 +7,7 @@ import { map } from 'rxjs';
 })
 export class RegisterService {
 
-  baseUrl = "http://localhost:8081/api/v1/auth/";
+  baseUrl = "http://localhost:8085/api/v1/auth/";
 
   constructor(
     private httpClient: HttpClient
