@@ -6,7 +6,7 @@ import { TokenStorageService } from './token-storage.service';
   providedIn: 'root'
 })
 export class ProfileService {
-  private baseUrl = 'http://localhost:8085/api/profile';
+  private baseUrl = 'http://localhost:8085/api/users';
   private httpOptions: any;
 
   constructor(
