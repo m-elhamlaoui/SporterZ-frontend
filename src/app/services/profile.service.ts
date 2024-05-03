@@ -6,7 +6,7 @@ import { TokenStorageService } from './token-storage.service';
   providedIn: 'root'
 })
 export class ProfileService {
-  private baseUrl = 'http://localhost:8085/api/profile';
+  private baseUrl = 'http://localhost:8085/api/users';
   private httpOptions: any;
 
   constructor(
@@ -25,11 +25,11 @@ export class ProfileService {
   }
 
   updateProfilePicture(picture: any) {
-    return this.http.post(`${this.baseUrl}/update-picture`, picture, this.httpOptions);
+    return this.http.post(`${this.baseUrl}/update`, picture, this.httpOptions);
   }
 
-  deleteProfilePicture() {
-    return this.http.delete(`${this.baseUrl}/delete-picture`, this.httpOptions);
+  deleteProfilePicture(picture: any) {
+    return this.http.post(`${this.baseUrl}/update`, picture, this.httpOptions);
   }
 
   updateProfile(profileData: any) {
@@ -37,10 +37,6 @@ export class ProfileService {
   }
 
   updatePassword(password: any) {
-    return this.http.post(`${this.baseUrl}/update-password`, password, this.httpOptions);
-  }
-
-  deleteProfile() {
-    return this.http.delete(`${this.baseUrl}/delete`, this.httpOptions);
+    return this.http.post(`${this.baseUrl}/update`, password, this.httpOptions);
   }
 }

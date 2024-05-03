@@ -29,13 +29,13 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.pictureForm = this.fb.group({
-      picture: ['', Validators.required]
+      photo: ['', Validators.required]
     });
 
     this.profileForm = this.fb.group({
-      firstname: [''],
-      lastname: [''],
-      username: [''],
+      firstName: [''],
+      lastName: [''],
+      login: [''],
       email: ['', [Validators.email]],
     });
 
@@ -72,7 +72,7 @@ export class ProfileComponent implements OnInit {
   onPictureSubmit() {
     if (this.pictureForm.valid) {
       const formData = new FormData();
-      formData.append('picture', this.pictureForm.get('picture')?.value.files[0]);
+      formData.append('photo', this.pictureForm.get('photo')?.value.files[0]);
 
       this.profileService.updateProfilePicture(formData).subscribe({
         next: (response: any) => {
@@ -90,11 +90,14 @@ export class ProfileComponent implements OnInit {
   }
 
   deletePicture() {
-    this.profileService.deleteProfilePicture().subscribe({
+    const data: any = {
+      photo: null
+    };
+    this.profileService.deleteProfilePicture(data).subscribe({
       next: (response: any) => {
         console.log('Picture deleted successfully', response);
         alert("Picture deleted successfully.");
-        this.profileData.picture = null;
+        this.profileData.photo = null;
       },
       error: (error: any) => {
         console.error('Error deleting picture', error);
@@ -105,39 +108,28 @@ export class ProfileComponent implements OnInit {
 
   onProfileSubmit() {
     if (this.profileForm.valid) {
-      if (!this.profileData) {
-        console.error('Profile data is not loaded yet.');
-        alert('Profile data is not available. Please try again later.');
-        return;
-      }
-  
-      const formData = this.profileForm.value;
-      const updatedData: { [key: string]: any } = {};
-  
-      Object.keys(this.profileData).forEach(key => {
-        if (formData[key] !== undefined && formData[key] !== this.profileData[key]) {
-          updatedData[key] = formData[key];
+      const formData = {
+        login: this.profileForm.get('login')?.value,
+        firstName: this.profileForm.get('firstName')?.value,
+        lastName: this.profileForm.get('lastName')?.value,
+        email: this.profileForm.get('email')?.value 
+      };
+
+      // Call the profile service to update profile data
+      this.profileService.updateProfile(formData).subscribe({
+        next: (data) => {
+          console.log('Profile data updated successfully');
+          alert('Profile data updated successfully');
+          this.getProfile();
+        },
+        error: (error) => {
+          console.error('Error updating profile data:', error);
+          alert('Error updating profile data. Please try again later.');
         }
       });
-
-      if (Object.keys(updatedData).length > 0) {
-        this.profileService.updateProfile(updatedData).subscribe({
-          next: (data) => {
-            console.log('Profile data updated successfully');
-            alert("Profile data updated successfully");
-            this.getProfile();
-          },
-          error: (e) => {
-            if (e.status === 403) {
-              alert("Error updating profile data");
-              this.tokenStorageService.logout();
-            }
-          },
-        });
-      } else {
-        console.log("No changes to update.");
-        alert("No changes detected.");
-      }
+    } else {
+      console.error('Profile form is not valid.');
+      alert('Please fill out all required fields correctly.');
     }
   }  
 
