@@ -32,4 +32,8 @@ export class UsersComponent implements OnInit {
     });
   }
 
+  addFriend(userId : number) {
+    
+  }
+
 }
