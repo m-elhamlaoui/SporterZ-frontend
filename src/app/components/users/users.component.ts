@@ -12,11 +12,15 @@ import { Component, OnInit } from '@angular/core';
 export class UsersComponent implements OnInit {
 
   usersList : any[] = [];
+  actualUserId : any;
 
-  constructor(private userService : UserService, private tokenStorageService : TokenStorageService) {}
+  constructor(private userService : UserService, private tokenStorageService : TokenStorageService) {
+    
+  }
 
   ngOnInit(): void {
     this.getUsers();
+    this.actualUserId = this.tokenStorageService.getUserId();
   }
 
   getUsers() {
@@ -32,8 +36,17 @@ export class UsersComponent implements OnInit {
     });
   }
 
-  addFriend(userId : number) {
-    
+  addFriend(actualUserId : number, friendUserId : number) {
+    return this.userService.addFriend(actualUserId, friendUserId).subscribe({
+      next: (data: any) => {
+        alert(`${friendUserId} added successfully!`);
+      },
+      error: (e) => {
+        if (e.status === 403) {
+          this.tokenStorageService.logout();
+        }
+      }
+    });
   }
 
 }

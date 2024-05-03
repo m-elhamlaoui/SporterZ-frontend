@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { IconBrandWindows } from 'angular-tabler-icons/icons';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +32,15 @@ export class TokenStorageService {
 
   getUsername(): any {
     return window.sessionStorage.getItem('username');
+  }
+
+  saveUserId(userId : any) : void {
+    window.sessionStorage.removeItem('userId');
+    window.sessionStorage.setItem('userId', userId);
+  }
+
+  getUserId() : any {
+    return window.sessionStorage.getItem('userId');
   }
 
   saveUser(user: any): void {

@@ -25,4 +25,11 @@ export class UserService {
     return this.http.get(`${this.baseUrl}/getAll`, this.httpOptions);
   }
 
+  addFriend(actualUserId : number, friendUserId : number) {
+    return this.http.post(`${this.baseUrl}/addFriend`, {
+      actualUserId: actualUserId,
+      friendUserId: friendUserId
+    }, this.httpOptions);
+  }
+
 }

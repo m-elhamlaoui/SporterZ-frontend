@@ -26,6 +26,7 @@ export class AuthenticationService {
           console.log(res);
           this.tokenStorageService.saveToken(res.token);
           this.tokenStorageService.saveUsername(res.userName);
+          this.tokenStorageService.saveUserId(res.userId);
         })
       );
   }
