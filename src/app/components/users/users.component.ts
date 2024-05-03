@@ -19,20 +19,19 @@ export class UsersComponent implements OnInit {
   actualUserId : any;
 
   constructor(private userService : UserService, private tokenStorageService : TokenStorageService) {
-    
+    this.friendList = tokenStorageService.getFriends();
+    this.actualUserId = this.tokenStorageService.getUserId();
+    console.log("Friends : ", this.friendList);
   }
 
   ngOnInit(): void {
     this.getUsers();
-    this.actualUserId = this.tokenStorageService.getUserId();
   }
 
   getUsers() {
     return this.userService.getUsers().subscribe({
       next: (data: any) => {
         this.usersList = data;
-        this.friendList = data.friends;
-        console.log(data.friends);
       },
       error: (e) => {
         if (e.status === 403) {
