@@ -1,3 +1,4 @@
+import { NgIf } from '@angular/common';
 import { TokenStorageService } from './../../services/token-storage.service';
 import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
@@ -5,13 +6,16 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-users',
   standalone: true,
-  imports: [],
+  imports: [
+    NgIf
+  ],
   templateUrl: './users.component.html',
   styleUrl: './users.component.scss'
 })
 export class UsersComponent implements OnInit {
 
   usersList : any[] = [];
+  friendList : any;
   actualUserId : any;
 
   constructor(private userService : UserService, private tokenStorageService : TokenStorageService) {
@@ -27,6 +31,8 @@ export class UsersComponent implements OnInit {
     return this.userService.getUsers().subscribe({
       next: (data: any) => {
         this.usersList = data;
+        this.friendList = data.friends;
+        console.log(data.friends);
       },
       error: (e) => {
         if (e.status === 403) {
@@ -39,7 +45,7 @@ export class UsersComponent implements OnInit {
   addFriend(actualUserId : number, friendUserId : number) {
     return this.userService.addFriend(actualUserId, friendUserId).subscribe({
       next: (data: any) => {
-        alert(`${friendUserId} added successfully!`);
+        alert("Friend added successfully!");
       },
       error: (e) => {
         if (e.status === 403) {
@@ -47,6 +53,10 @@ export class UsersComponent implements OnInit {
         }
       }
     });
+  }
+
+  sayHi() {
+
   }
 
 }
