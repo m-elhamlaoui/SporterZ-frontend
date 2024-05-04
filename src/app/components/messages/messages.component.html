@@ -1,17 +1,17 @@
-<div class="flex w-full h-full">
+<div class="flex w-full h-full px-0 py-0">
     <!-- Inbox -->
-    <div class="flex flex-col pt-3 w-4/12 bg-gray-50 h-full overflow-y-scroll">
+    <div class="flex flex-col pt-3 w-4/12 h-full overflow-y-scroll p-4 mb-4 bg-white border border-gray-200 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 dark:bg-gray-800">
       <label class="px-3">
         <input class="rounded-lg p-4 bg-gray-100 transition duration-200 focus:outline-none focus:ring-2 w-full"
           placeholder="Search..." />
-          <button class="rounded-lg p-4 bg-purple-600 duration-200 focus:outline-none focus:ring-2 w-full text-white px-6 py-2 mt-4"
+          <button class="rounded-lg p-4 bg-purple-600 duration-200 focus:outline-none focus:ring-2 w-full text-white px-6 py-2 mt-4 transition delay-10 active:bg-slate-50 active:text-gray-900"
            (click)="addUser()">New Message</button>
       </label>
 
       <ul class="mt-6">
-        <li class="py-5 border-b px-3 transition hover:bg-indigo-100">
+        <li class="py-5 border-b px-3 transition hover:bg-slate-200 dark:hover:bg-gray-700 rounded-md">
           <a href="#" class="flex justify-between items-center">
-            <h3 class="text-lg font-semibold">FirstName + LastName</h3>
+            <h3 class="text-lg font-semibold dark:text-white">FirstName + LastName</h3>
             <p class="text-md text-gray-400">23m ago</p>
           </a>
           <div class="text-md italic text-gray-400">You have been invited!</div>
@@ -20,30 +20,30 @@
     </div>
 
     <!-- Message -->
-    <div class="w-6/12 px-4 flex flex-col bg-white rounded-r-3xl">
+    <div class="w-8/12 px-4 flex flex-col ml-4 rounded-r-3xl p-4 mb-4 bg-white border border-gray-200 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 dark:bg-gray-800">
       <div class="flex justify-between items-center h-48 border-b-2 mb-8">
         <div class="flex space-x-4 items-center">
           <div class="h-12 w-12 rounded-full overflow-hidden">
             <img src="https://bit.ly/2KfKgdy" loading="lazy" class="h-full w-full object-cover" />
           </div>
           <div class="flex flex-col">
-            <h3 class="font-semibold text-lg">FirstName + LastName</h3>
+            <h3 class="font-semibold dark:text-white text-lg">FirstName + LastName</h3>
             <p class="text-light text-gray-400">FirstName&#64;gmail.com</p>
           </div>
         </div>
       </div>
       <div>
-        <h1 class="font-bold text-2xl">Afiin Ajmi</h1>
-        <article class="mt-8 text-gray-500 leading-7 tracking-wider">
+        <h1 class="font-bold dark:text-white text-2xl">Afiin Ajmi</h1>
+        <article class="mt-8 text-gray-500 dark:text-gray-300 leading-7 tracking-wider">
           <p>Saat,
             t9sr chi partiya?
           </p>
         </article>
       </div>
-      <div class="mt-6 border rounded-xl bg-gray-50 mb-3">
+      <div class="mt-6 border rounded-xl bg-gray-50 mb-3 dark:bg-inherit">
         <textarea class="w-full bg-gray-50 p-2 rounded-xl" placeholder="Type your reply here..." rows="3"></textarea>
         <div class="flex items-end p-2 justify-end">
-          <button class="bg-purple-600 text-white px-6 py-2 rounded-xl justify-end">Send</button>
+          <button class="bg-purple-600 text-white px-6 py-2 rounded-xl justify-end transition delay-10 active:bg-slate-50 active:text-gray-900">Send</button>
         </div>
       </div>
     </div>
