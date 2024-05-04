@@ -49,7 +49,7 @@ export class UsersComponent implements OnInit {
   getUsers() {
     return this.userService.getUsers().subscribe({
       next: (data: any) => {
-        this.usersList = data;
+        this.usersList = data.filter((user : any) => user.userId != this.actualUserId);
       },
       error: (e) => {
         if (e.status === 403) {
