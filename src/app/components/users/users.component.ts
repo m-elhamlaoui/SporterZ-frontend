@@ -15,17 +15,35 @@ import { Component, OnInit } from '@angular/core';
 export class UsersComponent implements OnInit {
 
   usersList : any[] = [];
-  friendList : any;
+  friendList : any[] = [];
   actualUserId : any;
 
   constructor(private userService : UserService, private tokenStorageService : TokenStorageService) {
-    this.friendList = tokenStorageService.getFriends();
-    this.actualUserId = this.tokenStorageService.getUserId();
-    console.log("Friends : ", this.friendList);
+  
   }
 
   ngOnInit(): void {
+    this.actualUserId = this.tokenStorageService.getUserId();
     this.getUsers();
+    this.getFriends()
+  }
+
+  isFriend(user: any): boolean {
+    return this.friendList.some(friend => friend.userId === user.userId);
+  }
+
+  getFriends() {
+    return this.userService.getFriends(this.actualUserId).subscribe({
+      next: (data: any) => {
+        this.friendList = data;
+        console.log("Friends : ", data);
+      },
+      error: (e) => {
+        if (e.status === 403) {
+          this.tokenStorageService.logout();
+        }
+      }
+    });
   }
 
   getUsers() {
@@ -45,6 +63,7 @@ export class UsersComponent implements OnInit {
     return this.userService.addFriend(actualUserId, friendUserId).subscribe({
       next: (data: any) => {
         alert("Friend added successfully!");
+        this.getFriends();
       },
       error: (e) => {
         if (e.status === 403) {

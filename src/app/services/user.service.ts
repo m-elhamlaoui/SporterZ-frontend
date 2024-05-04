@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { TokenStorageService } from './token-storage.service';
 
@@ -30,6 +30,10 @@ export class UserService {
       actualUserId: actualUserId,
       friendUserId: friendUserId
     }, this.httpOptions);
+  }
+
+  getFriends(actualUserId : number) {
+    return this.http.get(`${this.baseUrl}/getFriends?actualUserId=${actualUserId}`, this.httpOptions);
   }
 
 }
