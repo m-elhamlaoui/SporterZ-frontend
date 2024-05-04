@@ -34,15 +34,6 @@ export class TokenStorageService {
     return window.sessionStorage.getItem('username');
   }
 
-  saveFriends(friends: any) : void {
-    window.sessionStorage.removeItem('friends');
-    window.sessionStorage.setItem('friends', friends);
-  }
-
-  getFriends(): any {
-    return window.sessionStorage.getItem('friends');
-  }
-
   saveUserId(userId : any) : void {
     window.sessionStorage.removeItem('userId');
     window.sessionStorage.setItem('userId', userId);
