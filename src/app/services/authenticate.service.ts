@@ -27,7 +27,6 @@ export class AuthenticationService {
           this.tokenStorageService.saveToken(res.token);
           this.tokenStorageService.saveUsername(res.userName);
           this.tokenStorageService.saveUserId(res.userId);
-          this.tokenStorageService.saveFriends(res.friends);
         })
       );
   }
