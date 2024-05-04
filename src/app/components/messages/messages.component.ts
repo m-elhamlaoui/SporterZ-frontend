@@ -10,7 +10,7 @@ import { Component } from '@angular/core';
 export class MessagesComponent {
 
   addUser() {
-
+    alert('Soon: Add user');
   }
   
 }
