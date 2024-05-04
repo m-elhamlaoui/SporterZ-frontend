@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { NgIf } from '@angular/common';
 import { TokenStorageService } from './../../services/token-storage.service';
 import { UserService } from './../../services/user.service';
@@ -18,7 +19,7 @@ export class UsersComponent implements OnInit {
   friendList : any[] = [];
   actualUserId : any;
 
-  constructor(private userService : UserService, private tokenStorageService : TokenStorageService) {
+  constructor(private router : Router, private userService : UserService, private tokenStorageService : TokenStorageService) {
   
   }
 
@@ -74,7 +75,7 @@ export class UsersComponent implements OnInit {
   }
 
   sayHi() {
-
+    this.router.navigate(['/messages']);
   }
 
 }
