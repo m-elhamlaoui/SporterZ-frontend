@@ -24,12 +24,8 @@ export class ProfileService {
     return this.http.get<any>(`${this.baseUrl}/me`, this.httpOptions);
   }
 
-  updateProfilePicture(picture: any) {
-    return this.http.post(`${this.baseUrl}/update`, picture, this.httpOptions);
-  }
-
-  deleteProfilePicture(picture: any) {
-    return this.http.post(`${this.baseUrl}/update`, picture, this.httpOptions);
+  updateProfilePicture(picture: string) {
+    return this.http.post(`${this.baseUrl}/update`, {"photo": `${picture}`}, this.httpOptions); 
   }
 
   updateProfile(profileData: any) {

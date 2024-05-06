@@ -15,7 +15,10 @@ import { TokenStorageService } from '../../services/token-storage.service';
 })
 
 export class ProfileComponent implements OnInit {
-  pictureForm: FormGroup = new FormGroup({});
+  pictureForm: FormGroup = new FormGroup({
+    addProfilePicture: new FormControl('', [Validators.required])
+  });
+  
   profileForm: FormGroup = new FormGroup({});
   passwordForm: FormGroup = new FormGroup({});
 
@@ -69,33 +72,49 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  onPictureSubmit() {
-    if (this.pictureForm.valid) {
-      const formData = new FormData();
-      formData.append('photo', this.pictureForm.get('photo')?.value.files[0]);
-
-      this.profileService.updateProfilePicture(formData).subscribe({
-        next: (response: any) => {
-          console.log('Picture uploaded successfully', response);
-          alert("Picture uploaded successfully.");
-        },
-        error: (error: any) => {
-          console.error('Error uploading picture', error);
-          alert("Failed to upload picture.");
-        }
+  onPictureSubmit(base64Image: string) {
+    this.profileService.updateProfilePicture(base64Image).subscribe({
+      next: (response: any) => {
+        alert('Picture uploaded successfully');
+        this.profileData.photo = base64Image;
+      },
+      error: (error: any) => {
+        alert('Error uploading picture');
+      }
       });
-    } else {
-      alert("Please select a picture to upload.");
+  }
+
+  onPictureChange(event: any) {
+    const selectedFile = event.target.files[0];
+    const fileExtension = selectedFile.name.split('.').pop().toLowerCase();
+    console.log(fileExtension);
+
+     // Check file extension
+    const allowedExtensions = ['png', 'jpg', 'jpeg'];
+    if (!allowedExtensions.includes(fileExtension)) {
+      alert(`Invalid file extension: ${fileExtension}. Only ${allowedExtensions.join(', ')} allowed.`);
+      return;
     }
+
+    // Check file size
+    const fileSizeInKB = selectedFile.size / 1024;
+    const sizeLimitInKB = 800; 
+    if (fileSizeInKB > sizeLimitInKB) {
+      alert(`File size exceeds limit, maximum allowed is ${sizeLimitInKB} KB.`);
+      return;
+    }
+    
+    const reader = new FileReader();
+    reader.readAsDataURL(selectedFile);
+    reader.onloadend = () => {
+      const base64Data : string = reader.result as string;
+      this.onPictureSubmit(base64Data);  
+    };
   }
 
   deletePicture() {
-    const data: any = {
-      photo: null
-    };
-    this.profileService.deleteProfilePicture(data).subscribe({
+    this.profileService.updateProfilePicture('').subscribe({
       next: (response: any) => {
-        console.log('Picture deleted successfully', response);
         alert("Picture deleted successfully.");
         this.profileData.photo = null;
       },
