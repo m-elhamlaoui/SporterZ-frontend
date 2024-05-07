@@ -13,6 +13,7 @@ import { initFlowbite } from 'flowbite';
 })
 export class AppComponent implements OnInit {
   title = 'sporterz-client';
+  static baseUrl = 'http://localhost:8888/';
 
   ngOnInit(): void {
     initFlowbite();
