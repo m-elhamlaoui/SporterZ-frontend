@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { TokenStorageService } from './token-storage.service';
+import { AppComponent } from '../app.component';
 
 @Injectable({
   providedIn: 'root'
@@ -21,23 +22,23 @@ export class PostsService {
   }
 
   getPosts() {
-    return this.http.get(`${this.baseUrl}/getAll`, this.httpOptions);
+    return this.http.get(`${AppComponent.baseUrl}/getAll`, this.httpOptions);
   }
 
   getPostById(postId: number) {
     return this.http.get(
-      `${this.baseUrl}/get/${postId}`,
+      `${AppComponent.baseUrl}/get/${postId}`,
       this.httpOptions
     );
   }
 
   addPost(post: any) {
-    return this.http.post(`${this.baseUrl}/create`, post, this.httpOptions);
+    return this.http.post(`${AppComponent.baseUrl}/create`, post, this.httpOptions);
   }
 
   deletePost(postId: number) {
     return this.http.delete(
-      `${this.baseUrl}/delete/${postId}`,
+      `${AppComponent.baseUrl}/delete/${postId}`,
       this.httpOptions
     );
   }

@@ -8,7 +8,6 @@ import { TokenStorageService } from './token-storage.service';
   providedIn: 'root',
 })
 export class AuthenticationService {
-  private baseUrl = "http://localhost:8085/api/v1/auth/authenticate";
 
   constructor(
     private http: HttpClient,
@@ -17,7 +16,7 @@ export class AuthenticationService {
 
   authenticate(email: string, password: string) {
     return this.http
-      .post(this.baseUrl, {
+      .post(AppComponent.baseUrl, {
         email: email,
         password: password,
       })

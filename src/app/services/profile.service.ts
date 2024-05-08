@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AppComponent } from '../app.component';
 import { TokenStorageService } from './token-storage.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProfileService {
-  private baseUrl = 'http://localhost:8085/api/users';
   private httpOptions: any;
 
   constructor(
@@ -21,22 +21,18 @@ export class ProfileService {
   }
 
   getProfile() {
-    return this.http.get<any>(`${this.baseUrl}/me`, this.httpOptions);
+    return this.http.get<any>(`${AppComponent.baseUrl}/api/auth/me`, this.httpOptions);
   }
 
-  updateProfilePicture(picture: any) {
-    return this.http.post(`${this.baseUrl}/update`, picture, this.httpOptions);
-  }
-
-  deleteProfilePicture(picture: any) {
-    return this.http.post(`${this.baseUrl}/update`, picture, this.httpOptions);
+  updateProfilePicture(picture: string) {
+    return this.http.post(`${AppComponent.baseUrl}/api/auth/update`, {"photo": `${picture}`}, this.httpOptions); 
   }
 
   updateProfile(profileData: any) {
-    return this.http.post(`${this.baseUrl}/update`, profileData, this.httpOptions);
+    return this.http.post(`${AppComponent.baseUrl}/api/auth/update`, profileData, this.httpOptions);
   }
 
   updatePassword(password: any) {
-    return this.http.post(`${this.baseUrl}/update`, password, this.httpOptions);
+    return this.http.post(`${AppComponent.baseUrl}/api/auth/update`, password, this.httpOptions);
   }
 }

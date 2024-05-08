@@ -2,9 +2,18 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
-  "projects": {
+  "projects": {    
     "sporterz-client": {
       "projectType": "application",
+      "i18n": {
+        "sourceLocale": "en-US",
+        "locales": {
+          "fr-FR": {
+            "translation": "src/locale/messages.fr.xlf",
+            "baseHref": "fr-FR/"
+          }
+        }
+      },
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
@@ -17,6 +26,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
+            "localize": [
+              "fr-FR"
+            ],
             "outputPath": "dist/sporterz-client",
             "index": "src/index.html",
             "browser": "src/main.ts",
@@ -104,5 +116,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }

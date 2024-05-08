@@ -2,12 +2,13 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { TokenStorageService } from './token-storage.service';
 
+import { AppComponent } from '../app.component';
+
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  private baseUrl = "http://localhost:8085/api/users";
   private httpOptions: any;
   
   constructor(
@@ -22,18 +23,18 @@ export class UserService {
   }
 
   getUsers() {
-    return this.http.get(`${this.baseUrl}/getAll`, this.httpOptions);
+    return this.http.get(`${AppComponent.baseUrl}api/auth/getAll`, this.httpOptions);
   }
 
   addFriend(actualUserId : number, friendUserId : number) {
-    return this.http.post(`${this.baseUrl}/addFriend`, {
+    return this.http.post(`${AppComponent.baseUrl}/addFriend`, {
       actualUserId: actualUserId,
       friendUserId: friendUserId
     }, this.httpOptions);
   }
 
   getFriends(actualUserId : number) {
-    return this.http.get(`${this.baseUrl}/getFriends?actualUserId=${actualUserId}`, this.httpOptions);
+    return this.http.get(`${AppComponent.baseUrl}/getFriends?actualUserId=${actualUserId}`, this.httpOptions);
   }
 
 }
