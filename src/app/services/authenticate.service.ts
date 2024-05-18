@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AppComponent } from '../app.component';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs';
 import { TokenStorageService } from './token-storage.service';
 
@@ -15,11 +15,14 @@ export class AuthenticationService {
   ) {}
 
   authenticate(email: string, password: string) {
+    const headers = new HttpHeaders({
+      'Access-Control-Request-Method': 'POST'
+    });
     return this.http
-      .post(AppComponent.baseUrl, {
+      .post(AppComponent.baseUrl + "api/auth/authenticate", {
         email: email,
         password: password,
-      })
+      }, { headers: headers })
       .pipe(
         map((res: any) => {
           console.log(res);

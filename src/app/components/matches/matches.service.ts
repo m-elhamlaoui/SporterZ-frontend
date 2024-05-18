@@ -12,7 +12,6 @@ export class MatchesService {
   constructor(private http: HttpClient) {}
 
   getMatches(): Observable<Match[]> {
-    //console.log(this.http.get<Match[]>(AppComponent.baseUrl + 'match-service/getAll'));
     return this.http.get<Match[]>(AppComponent.baseUrl + 'match-service/getAll');
   }
 }

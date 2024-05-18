@@ -7,7 +7,6 @@ import { AppComponent } from '../app.component';
   providedIn: 'root'
 })
 export class PostsService {
-  private baseUrl = "http://localhost:8081/api/posts";
   private httpOptions: any;
   
   constructor(
@@ -22,7 +21,7 @@ export class PostsService {
   }
 
   getPosts() {
-    return this.http.get(`${AppComponent.baseUrl}/getAll`, this.httpOptions);
+    return this.http.get(`${AppComponent.baseUrl}api/posts/getAll`, this.httpOptions);
   }
 
   getPostById(postId: number) {
@@ -33,12 +32,12 @@ export class PostsService {
   }
 
   addPost(post: any) {
-    return this.http.post(`${AppComponent.baseUrl}/create`, post, this.httpOptions);
+    return this.http.post(`${AppComponent.baseUrl}api/posts/create`, post, this.httpOptions);
   }
 
   deletePost(postId: number) {
     return this.http.delete(
-      `${AppComponent.baseUrl}/delete/${postId}`,
+      `${AppComponent.baseUrl}api/posts/delete/${postId}`,
       this.httpOptions
     );
   }
