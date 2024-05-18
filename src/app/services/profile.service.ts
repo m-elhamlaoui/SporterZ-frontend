@@ -21,18 +21,18 @@ export class ProfileService {
   }
 
   getProfile() {
-    return this.http.get<any>(`${AppComponent.baseUrl}/api/auth/me`, this.httpOptions);
+    return this.http.get<any>(`${AppComponent.baseUrl}api/auth/me`, this.httpOptions);
   }
 
   updateProfilePicture(picture: string) {
-    return this.http.post(`${AppComponent.baseUrl}/api/auth/update`, {"photo": `${picture}`}, this.httpOptions); 
+    return this.http.post(`${AppComponent.baseUrl}api/auth/update`, {"photo": `${picture}`}, this.httpOptions); 
   }
 
   updateProfile(profileData: any) {
-    return this.http.post(`${AppComponent.baseUrl}/api/auth/update`, profileData, this.httpOptions);
+    return this.http.post(`${AppComponent.baseUrl}api/auth/update`, profileData, this.httpOptions);
   }
 
   updatePassword(password: any) {
-    return this.http.post(`${AppComponent.baseUrl}/api/auth/update`, password, this.httpOptions);
+    return this.http.post(`${AppComponent.baseUrl}api/auth/update`, password, this.httpOptions);
   }
 }
