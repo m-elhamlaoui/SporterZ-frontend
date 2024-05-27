@@ -13,7 +13,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { LandingComponent } from './components/landing/landing.component';
 
 export const routes: Routes = [
-    { path: '', component: LandingComponent },
+    { path: '', component: LoginComponent },
 
     { path: 'login', component: LoginComponent, children: [
         { path: '', component: LoginComponent },
