@@ -1,4 +1,4 @@
-import { NotificationsComponent } from './components/notifications/notifications.component';
+import { UsersComponent } from './components/users/users.component';
 import { Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
@@ -47,7 +47,7 @@ export const routes: Routes = [
         { path: '', component: ProfileComponent },
     ]},
 
-    { path: 'notifications', component: LayoutComponent, canActivate: [], children: [
-        { path: '', component: NotificationsComponent },
+    { path: 'users', component: LayoutComponent, canActivate: [], children: [
+        { path: '', component: UsersComponent },
     ]}
 ];

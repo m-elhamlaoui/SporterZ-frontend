@@ -13,7 +13,7 @@
                   <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
                   <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
                 </svg>
-                <span class="element-title">Home</span>
+                <span class="element-title" i18n>Home</span>
              </a>
           </li>
           <li>
@@ -29,20 +29,22 @@
                   <path d="M4 12h4" />
                   <path d="M4 18h4" />
                 </svg>
-                <span class="element-title">Explore</span>
+                <span class="element-title" i18n>Explore</span>
              </a>
           </li>
           <li>
-             <a href="/notifications" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+             <a href="/users" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                 <!-- <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                    <path d="m17.418 3.623-.018-.008a6.713 6.713 0 0 0-2.4-.569V2h1a1 1 0 1 0 0-2h-2a1 1 0 0 0-1 1v2H9.89A6.977 6.977 0 0 1 12 8v5h-2V8A5 5 0 1 0 0 8v6a1 1 0 0 0 1 1h8v4a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-4h6a1 1 0 0 0 1-1V8a5 5 0 0 0-2.582-4.377ZM6 12H4a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Z"/>
                 </svg> -->
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-bell" width="35" height="35" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-plus" width="35" height="35" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                  <path d="M10 5a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6" />
-                  <path d="M9 17v1a3 3 0 0 0 6 0v-1" />
+                  <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
+                  <path d="M16 19h6" />
+                  <path d="M19 16v6" />
+                  <path d="M6 21v-2a4 4 0 0 1 4 -4h4" />
                 </svg>
-                <span class="element-title">Notifications</span>
+                <span class="element-title" i18n>Users</span>
              </a>
           </li>
           <li>
@@ -55,7 +57,7 @@
                   <path d="M15 4l6 2v5h-3v8a1 1 0 0 1 -1 1h-10a1 1 0 0 1 -1 -1v-8h-3v-5l6 -2a3 3 0 0 0 6 0" />
                   <path d="M10.5 11h2.5l-1.5 5" />
                 </svg>
-                <span class="element-title">Teams</span>
+                <span class="element-title" i18n>Teams</span>
              </a>
           </li>
           <li>
@@ -69,7 +71,7 @@
                   <path d="M12 7l4.76 3.45l-1.76 5.55h-6l-1.76 -5.55z" />
                   <path d="M12 7v-4m3 13l2.5 3m-.74 -8.55l3.74 -1.45m-11.44 7.05l-2.56 2.95m.74 -8.55l-3.74 -1.45" />
                 </svg>
-                <span class="element-title">Matches</span>
+                <span class="element-title" i18n>Matches</span>
              </a>
           </li>
           <li>
@@ -83,7 +85,7 @@
                   <path d="M8 13h6" />
                   <path d="M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-5l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12z" />
                 </svg>
-                <span class="element-title">Messages</span>
+                <span class="element-title" i18n>Messages</span>
              </a>
           </li>
           <li>
@@ -94,18 +96,18 @@
                   <path d="M6 21v-2a4 4 0 0 1 4 -4h3.5" />
                   <path d="M18.42 15.61a2.1 2.1 0 0 1 2.97 2.97l-3.39 3.42h-3v-3l3.42 -3.39z" />
                 </svg>
-                <span class="element-title">Profile</span>
+                <span class="element-title" i18n>Profile</span>
              </a>
           </li>
           <li>
-            <a href="/log-out" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+            <a (click)="logout()" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout-2" width="35" height="35" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                   <path d="M10 8v-2a2 2 0 0 1 2 -2h7a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-7a2 2 0 0 1 -2 -2v-2" />
                   <path d="M15 12h-12l3 -3" />
                   <path d="M6 15l-3 -3" />
                 </svg>
-               <span class="element-title">Log out</span>
+               <span class="element-title" i18n>Log out</span>
             </a>
          </li>
        </ul>

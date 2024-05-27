@@ -5,12 +5,15 @@ import { initFlowbite } from 'flowbite';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [
+    RouterOutlet
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit {
   title = 'sporterz-client';
+  static baseUrl = 'http://api-gateway:8888/';
 
   ngOnInit(): void {
     initFlowbite();
