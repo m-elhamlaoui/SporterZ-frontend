@@ -1,11 +1,11 @@
-FROM node:alpine
+FROM node:16-bullseye-slim
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
-COPY . /usr/src/app
-
-RUN npm install -g @angular/cli
+COPY package*.json ./
 
 RUN npm install
+
+COPY . .
 
 CMD ["ng", "serve"]
